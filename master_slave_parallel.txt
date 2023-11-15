@@ -1,0 +1,37 @@
+Single pipline calling multiple Slaves
+###########################################################################################################################
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Parallel') {
+            parallel {
+                stage('Hellp') {
+                    
+                    agent {
+                        label 'dev'
+                        
+                    }
+            
+                    steps {
+                         echo 'Hello World'
+                    }
+                }
+    
+                stage('test') {
+                    agent {
+                        label 'ua'
+                
+                    }
+                    steps {
+                          echo 'JHC'
+                    }
+            
+                }
+            }    
+        }    
+    }
+} 
+
+###################################################################################################
